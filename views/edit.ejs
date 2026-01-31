@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+<body>
+  <div class="main">
+    <div class="container">
+      <div class="main-content">
+        <h1>Edit post</h1>
+        <p>Are you sure you want to Edit this post? This can’t be undone.</p>
+      </div>
+      <div class="form edit">
+        <form action="/post/<%= post.id %>/edit" method="post">
+          <label for="postTitle">Post Title:</label>
+          <input
+            type="text"
+            name="postTitle"
+            id="edit-postTitle"
+            placeholder="Type the title here"
+            required
+            value="<%= post.title %>"
+          />
+          <label for="postContent">the Content</label>
+          <textarea
+            name="postContent"
+            id="edit-postContent"
+            class="textarea-edit"
+            placeholder="Type the content here "
+            required
+          >
+<%= post.content %></textarea
+          >
+          <div class="action">
+            <input type="submit" value="Edit" />
+            <input
+              type="button"
+              value="back"
+              onclick="location.href = '/posts'"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include('partials/footer') %>
