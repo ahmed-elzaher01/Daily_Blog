@@ -5,6 +5,25 @@
       <div class="main-content">
         <h1><%= title %></h1>
         <p><%= homeContent %></p>
+
+          <div class="posts">
+            <% if(post.length <1) { %>
+                <h3 style="text-align: center; color: rgb(107, 102, 102); margin-top:20px ;">No Posts shared Yet</h3>
+            
+            <% } else { %>
+              <% post.forEach((element) => { %>
+                <div class="post">
+                  <a href="/post/<%=element.id%>"><h2><%= element.title %></h2></a>
+                <% if(element.content.length>500) {%>
+                  <p><%=element.content.slice(0,500)%>...<a href="/post/<%=element.id%>">see more</a></p>
+                <% }else{ %>
+                  <p><%= element.content %></p>
+                <% } %>
+                </div>
+              <% }); %>
+              <% } %>
+          </div>
+        
       </div>
     </div>
   </div>

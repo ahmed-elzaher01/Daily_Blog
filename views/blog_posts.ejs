@@ -18,8 +18,19 @@
                   <p><%= element.content %></p>
                 <% } %>
                   <form action="/post/<%=element.id%>/delete" method="post" class="delete-post-form">
-                    <button type="submit" class="delete-btn">Delete Post</button>
-                    <a href="./post/<%=element.id %>/edit" class="edit-btn">Edit Post</a>
+                    <div class="post-action-btn">
+
+                      <div>
+                        <button type="submit" class="delete-btn">Delete Post</button>
+                        <a href="./post/<%=element.id %>/edit" class="edit-btn">Edit Post</a>
+                      </div>
+                      <div>
+                       <a href="/post/<%=element.id %>/public" class="share-btn">Share</a>
+                      </div>
+
+                    </div>
+
+
                   </form>
 
                 </div>
@@ -44,27 +55,7 @@
     </div>
   </body>
 
-  <!-- <div class="edit-modal hidden">
-    <div class="box">
-      <div>
-        <h1>Edit post</h1>
-        <p>Are you sure you want to Edit this post? This can’t be undone.</p>
-      </div>
-      <div class="form">
-        <form action="post/" method="post"  >
-          <label for="new-title">New Post Title:</label>
-          <input type="text" class="new-title" name="new-title">
-          <label for="">the content </label>
-          <textarea name="new-content" id="new-content" class="new-content"></textarea>
-        </form>
-        <div>
-         <button type="button" id="cancelEdit">Cancel</button>
-      <button type="button" id="confirmEdit">Confirm</button>
-        </div>
 
-      </div>
-    </div>
-  </div> -->
 
   <%- include('partials/footer') %>
 

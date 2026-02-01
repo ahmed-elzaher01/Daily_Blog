@@ -15,7 +15,7 @@ const about_content =
 
 const contact_content =
   "For any inquiries or feedback, please reach out to us at ";
-
+const public_posts = [];
 const posts = [];
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -43,11 +43,13 @@ app.post("/post/:id/delete", (req, res) => {
   res.redirect("/posts");
 });
 
-app.get("/about/:content", (req, res) => {
-  console.log(req.params.content);
-  res.render("about", {
-    aboutContent: req.params.content,
-  });
+app.get("/post/:id/public", (req, res) => {
+  const post = posts.find((p) => p.id === req.params.id);
+  if (!post) return res.status(404).send("Post not found");
+  const alreadyPublic = public_posts.some((p) => p.id === post.id);
+  if (!alreadyPublic) public_posts.push(post);
+
+  res.redirect("/");
 });
 
 app.get("/post/:id", (req, res) => {
@@ -79,6 +81,7 @@ app.get("/", (req, res) => {
   res.render("index", {
     title: "Blogs",
     homeContent: home_content,
+    post: public_posts,
   });
 });
 
