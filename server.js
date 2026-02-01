@@ -38,7 +38,11 @@ app.post("/post/:id/delete", (req, res) => {
   if (postIndex === -1) {
     return res.status(404).send("Post not found");
   }
+
+  const public_postsIdenx = public_posts.findIndex((p) => p.id === postId);
   posts.splice(postIndex, 1);
+  public_posts.splice(public_postsIdenx, 1);
+
   console.log(`Post with ID ${postId} deleted.`);
   res.redirect("/posts");
 });
